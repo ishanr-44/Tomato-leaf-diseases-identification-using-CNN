@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tomato Leaf Disease Detection</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .result { margin-top: 20px; padding: 20px; border: 1px solid #ddd; }
+        img { max-width: 500px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tomato Leaf Disease Detection</h1>
+
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            {% if img_path %}
+            <img src="{{ url_for('static', filename='uploads/' + img_path.split('/')[-1]) }}">
+            {% endif %}
+            <h2>Prediction: {{ prediction }}</h2>
+            <h3>Confidence: {{ confidence }}%</h3>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
